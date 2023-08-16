@@ -44,7 +44,7 @@ RUN apt install supervisor -y
 RUN service supervisor start
 # Set the working directory to /var/www/html
 WORKDIR /var/www/html
-
+COPY . /var/www/html
 # Expose port 80 to the host machine
 EXPOSE 80
 
