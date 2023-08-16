@@ -1,0 +1,893 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+body {
+  background-color: #f6f6f7;
+}
+
+.dark\:focus\:ring-blue-600:focus {
+  --tw-ring-opacity: unset !important;
+}
+
+.MuiStepIcon-root {
+  color: #008060 !important;
+}
+
+.tooltip {
+  visibility: hidden;
+  /* Or display: none, depending on how you want it to behave */
+}
+
+.tooltip-on-hover:hover+.tooltip {
+  /* Uses the adjacent sibling selector */
+  visibility: visible;
+  /* Or display: block */
+}
+
+::placeholder {
+  margin-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* or, for legacy browsers */
+
+::-webkit-input-placeholder {
+  margin-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  margin-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  margin-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+:-ms-input-placeholder {
+  margin-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #008060;
+  border-radius: 50%;
+  outline: none;
+  background-color: white;
+}
+
+input[type="radio"]:hover {
+  box-shadow: 0 0 5px 0px #008060 inset;
+}
+
+input[type="radio"]:before {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 60%;
+  margin: 20% 20% 20% 23%;
+  border-radius: 50%;
+}
+
+input[type="radio"]:checked:before {
+  background: #008060;
+}
+
+input[type="checkbox"] {
+  accent-color: #008060;
+  border: 1px solid #008060 !important;
+  outline: none;
+}
+
+input[type=checkbox]:before {
+  border: 1px solid #008060 !important;
+  outline: none;
+}
+
+.navbar_btn_Group button:focus {
+  background-color: #f6f6f7;
+}
+
+
+option:hover {
+  background-color: #008060 !important;
+}
+
+
+.css-sghohy-MuiButtonBase-root-MuiButton-root.Mui-disabled {
+  background-color: rgba(0, 0, 0, 0.12) !important;
+  color: rgba(0, 0, 0, 0.26) !important;
+}
+
+
+.MuiLinearProgress-bar {
+  background-color: #008060 !important;
+}
+
+.MuiButton-contained:hover {
+  background-color: #008060 !important;
+}
+
+.MuiTabs-indicator {
+  margin: 0 5px 0;
+}
+
+/* .MuiButton-disabled{
+  background-color: rgba(0, 0, 0, 0.12) !important;
+} */
+/* .MuiButton-disableElevation{
+  background-color: rgba(0, 0, 0, 0.12) !important;
+} */
+
+
+.css-1bjk3jo-MuiButtonBase-root-MuiBottomNavigationAction-root.Mui-selected {
+  background-color: #f6f6f7 !important;
+}
+
+.css-16lloyr-MuiBottomNavigation-root {
+  justify-content: start !important;
+}
+
+.MuiBottomNavigationAction-root {
+  color: black !important;
+}
+
+.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track {
+  background-color: #008060 !important;
+}
+
+.css-5ryogn-MuiButtonBase-root-MuiSwitch-switchBase.Mui-checked+.MuiSwitch-track {
+  opacity: 0.6 !important;
+}
+
+.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium {
+  border: 1px solid #babfc3 !important;
+  color: black !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+select {
+  outline: none !important;
+  border: 1px solid #babfc3 !important;
+  background-color: none !important;
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: black !important
+}
+
+.css-1aquho2-MuiTabs-indicator {
+  background-color: #008060 !important;
+}
+
+.css-19kzrtu {
+  padding: 0 !important;
+}
+
+.MuiButtonBase-root {
+  margin-left: 10px;
+}
+
+.css-heg063-MuiTabs-flexContainer {
+  background-color: white !important;
+}
+
+.title {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.checked-item,
+.not-checked-item {
+  margin-left: 10px;
+}
+
+
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+  padding: 0px 9px !important;
+}
+
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
+  box-shadow: 0 0 0.3125rem rgba(23, 24, 24, .05), 0 0.0625rem 0.125rem rgba(0, 0, 0, .15) !important;
+}
+
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root {
+  box-shadow: 0 0 0.3125rem rgba(23, 24, 24, .05), 0 0.0625rem 0.125rem rgba(0, 0, 0, .15) !important;
+}
+
+color {
+  color: #d90707 !important;
+}
+
+.css-h0q0iv-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: #008060 !important;
+}
+
+.css-h0q0iv-MuiButtonBase-root-MuiTab-root {
+  padding-top: unset !important;
+  padding-bottom: unset !important;
+}
+
+
+
+.ql-editor {
+  word-break: break-all !important;
+}
+
+.ql-toolbar.ql-snow {
+  background-color: white !important;
+  box-shadow: 0 0 0.3125rem rgba(23, 24, 24, .05), 0 0.0625rem 0.125rem rgba(0, 0, 0, .15) !important;
+}
+
+
+.quill {
+  width: 100% !important;
+}
+
+.ql-editor.ql-blank {
+  position: relative !important;
+}
+
+.css-1k51tf5-MuiTooltip-tooltip {
+  background-color: white !important;
+  color: black !important;
+  box-shadow: 0 0 0.3125rem rgba(23, 24, 24, .05), 0 0.0625rem 0.125rem rgba(0, 0, 0, .15) !important;
+}
+
+.css-kudwh-MuiTooltip-arrow {
+  color: rgb(0, 0, 0) !important;
+}
+
+.MuiInputBase-input:focus {
+  border: none !important;
+  outline: none !important;
+}
+
+::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.688) !important;
+  font-size: 14px !important;
+}
+
+
+
+
+.classOfFirstEl {
+  position: absolute;
+  z-index: 2;
+  padding: 3px;
+  cursor: grab;
+}
+
+.classOfFirstEl img {
+  width: 312px;
+  height: 312px;
+  pointer-events: none;
+}
+
+.otherClass {
+  padding: 5px;
+  cursor: grab;
+}
+
+.otherClass:nth-child(2),
+.otherClass:nth-child(7) {
+  margin-left: 320px;
+}
+
+.otherClass img {
+  width: 150px;
+  height: 150px;
+  pointer-events: none;
+}
+
+@media (max-width:1541px) and (min-width:1334px) {
+
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(7) {
+    margin-left: unset;
+  }
+
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(5) {
+    margin-left: 320px;
+  }
+
+}
+
+@media (max-width:1333px) and (min-width:1126px) {
+
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(7) {
+    margin-left: unset;
+  }
+
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(4) {
+    margin-left: 320px;
+  }
+
+}
+
+@media (max-width:1125px) and (min-width:917px) {
+
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(7) {
+    margin-left: unset;
+  }
+
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(2) {
+    margin-left: 320px;
+  }
+
+}
+
+@media (max-width:917px) and (min-width:768px) {
+
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(7) {
+    margin-left: unset;
+  }
+
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(3) {
+    margin-left: 320px;
+  }
+
+}
+
+@media (max-width:767px) and (min-width:715px) {
+
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(7) {
+    margin-left: unset;
+  }
+
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(4) {
+    margin-left: 320px;
+  }
+
+}
+
+@media (max-width:715px) and (min-width:556px) {
+
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(7) {
+    margin-left: unset;
+  }
+
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(3) {
+    margin-left: 320px;
+  }
+
+}
+
+@media (max-width:555px) and (min-width:300px) {
+
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(7) {
+    margin-left: unset;
+  }
+
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(2),
+  .otherClass:nth-child(3) {
+    margin-left: 320px;
+  }
+
+}
+
+@media (max-width:4000px) and (min-width:2166px) {
+
+  .otherClass:nth-child(2) {
+    margin-left: 320px;
+  }
+
+  .otherClass:nth-child(7) {
+    margin-left: unset !important;
+  }
+
+}
+
+@media (max-width:4000px) and (min-width:2582px) {
+
+  .image-container {
+    height: 17vw !important;
+  }
+
+}
+
+
+
+
+@media (max-width:400px) and (min-width:320px) {
+  .MuiBottomNavigation-root.css-16lloyr-MuiBottomNavigation-root {
+    flex-wrap: wrap;
+    height: auto;
+    margin: auto;
+    justify-content: unset !important;
+    display: block;
+  }
+
+  .icon_7 {
+    width: 58% !important;
+
+  }
+
+  .Polaris-Button.Polaris-Button--plain {
+    margin: 0px;
+    padding: 0px;
+  }
+
+
+}
+
+
+@media (max-width:591px) and (min-width:400px) {
+  .MuiBottomNavigation-root.css-16lloyr-MuiBottomNavigation-root {
+
+
+    flex-wrap: wrap;
+    height: auto;
+    justify-content: unset !important;
+    display: block;
+  }
+
+  .icon_7 {
+    width: 23% !important;
+
+  }
+
+  .Polaris-Button.Polaris-Button--plain {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .Card__Button {
+    flex-direction: column !important;
+  }
+
+  .Sortby_Today,
+  .Search_by_Filters1,
+  .Customize___Column1 {
+    margin-bottom: 10px !important;
+  }
+
+}
+
+@media (max-width:800px) and (min-width:591px) {
+
+  .MuiBottomNavigation-root.css-16lloyr-MuiBottomNavigation-root {
+    flex-wrap: wrap;
+    height: auto;
+    justify-content: unset !important;
+    display: block;
+  }
+
+  .icon_7 {
+    width: 23% !important;
+
+  }
+
+  .Polaris-Button.Polaris-Button--plain {
+    margin: 0px;
+    padding: 0px;
+  }
+
+
+}
+
+.blink {
+  animation: blink-animation 2s steps(5, start) infinite;
+  -webkit-animation: blink-animation 2s steps(5, start) infinite;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+
+.toggle-onoff {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: initial;
+  width: 60px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.toggle-onoff-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toggle-onoff-label {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  border: 0px solid #999999;
+  border-radius: 20px;
+
+}
+
+.toggle-onoff-inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  transition: margin 0.3s ease-in 0s;
+
+}
+
+.toggle-onoff-inner:before,
+.toggle-onoff-inner:after {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 20px;
+  padding: 0;
+  line-height: 23px;
+  font-size: 10px;
+  color: white;
+  font-family: app-font, Arial, sans-serif;
+  font-weight: normal;
+  box-sizing: border-box;
+}
+
+.toggle-onoff-inner:before {
+  content: "ON";
+  padding-left: 10px;
+  background-color: #008060;
+  color: #FFF;
+  -webkit-box-shadow: inset 0 2px 3px -2px rgba(128, 128, 128, 0.4);
+  box-shadow: inset 0 2px 3px -2px rgba(128, 128, 128, 0.4);
+}
+
+.toggle-onoff-inner:after {
+  content: "OFF";
+  padding-right: 10px;
+  background-color: #b9c3ca;
+  color: #FFF;
+  text-align: right;
+  -webkit-box-shadow: inset 0 2px 3px -2px rgba(128, 128, 128, 0.4);
+  box-shadow: inset 0 2px 3px -2px rgba(128, 128, 128, 0.4);
+}
+
+.toggle-onoff-switch {
+  display: block;
+  width: 17px;
+  margin: 4px;
+  background: #FFFFFF;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 34px;
+  border: 0px solid #999999;
+  -webkit-box-shadow: 0 2px 3px -2px rgba(128, 128, 128, 0.5);
+  box-shadow: 0 2px 3px -2px rgba(128, 128, 128, 0.5);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 30%, rgba(230, 230, 230, 0.9) 100%);
+  border-radius: 20px;
+  transition: all 0.3s ease-in 0s;
+}
+
+.toggle-onoff-checkbox:checked+.toggle-onoff-label .toggle-onoff-inner {
+  margin-left: 0;
+
+}
+
+.toggle-onoff-checkbox:checked+.toggle-onoff-label .toggle-onoff-switch {
+  right: 0px;
+}
+
+
+.mapCheckbox {
+  list-style: none;
+  columns: 3;
+  column-gap: 10px;
+}
+
+
+
+
+
+
+
+
+
+input[type="time"] {
+  display: block;
+  position: relative;
+  padding: 9px 49px 6px 34px;
+
+  font-size: 1rem;
+  font-family: monospace;
+
+  border: 1px solid #8292a2;
+  border-radius: 0.25rem;
+  background:
+    white url("https://www.freeiconspng.com/uploads/clock-png-15.png") right 1rem center no-repeat;
+  background-size: 20px auto;
+
+  cursor: pointer;
+}
+
+input[type="time"]:focus {
+  outline: none;
+}
+
+
+::-webkit-datetime-edit {}
+
+::-webkit-datetime-edit-fields-wrapper {}
+
+::-webkit-datetime-edit-month-field:hover,
+::-webkit-datetime-edit-day-field:hover,
+::-webkit-datetime-edit-year-field:hover {
+  background: rgba(0, 120, 250, 0.1);
+}
+
+::-webkit-datetime-edit-text {
+  opacity: 0;
+}
+
+::-webkit-clear-button,
+::-webkit-inner-spin-button {
+  display: none;
+}
+
+::-webkit-calendar-picker-indicator {
+  position: absolute;
+  width: 2.5rem;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  opacity: 0;
+  cursor: pointer;
+
+  color: rgba(0, 120, 250, 1);
+  background: rgba(0, 120, 250, 1);
+
+}
+
+input[type="time"]:hover::-webkit-calendar-picker-indicator {
+  opacity: 0.05;
+}
+
+input[type="time"]:hover::-webkit-calendar-picker-indicator:hover {
+  opacity: 0.15;
+}
+
+
+input[type="date"] {
+  display: block;
+  position: relative;
+  padding: 9px 37px 6px 24px;
+
+  font-size: 1rem;
+  font-family: monospace;
+
+  border: 1px solid #8292a2;
+  border-radius: 0.25rem;
+  background:
+    white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='22' viewBox='0 0 20 22'%3E%3Cg fill='none' fill-rule='evenodd' stroke='%23688EBB' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' transform='translate(1 1)'%3E%3Crect width='18' height='18' y='2' rx='2'/%3E%3Cpath d='M13 0L13 4M5 0L5 4M0 8L18 8'/%3E%3C/g%3E%3C/svg%3E") right 1rem center no-repeat;
+
+  cursor: pointer;
+}
+
+input[type="date"]:focus {
+  outline: none;
+}
+
+::-webkit-datetime-edit {}
+
+::-webkit-datetime-edit-fields-wrapper {}
+
+::-webkit-datetime-edit-month-field:hover,
+::-webkit-datetime-edit-day-field:hover,
+::-webkit-datetime-edit-year-field:hover {
+  background: rgba(0, 120, 250, 0.1);
+}
+
+::-webkit-datetime-edit-text {
+  opacity: 0;
+}
+
+::-webkit-clear-button,
+::-webkit-inner-spin-button {
+  display: none;
+}
+
+::-webkit-calendar-picker-indicator {
+  position: absolute;
+  width: 2.5rem;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  opacity: 0;
+  cursor: pointer;
+
+  color: rgba(0, 120, 250, 1);
+  background: rgba(0, 120, 250, 1);
+
+}
+
+input[type="date"]:hover::-webkit-calendar-picker-indicator {
+  opacity: 0.05;
+}
+
+input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
+  opacity: 0.15;
+}
+
+.MuiAutocomplete-tag {
+  background-color: #e5e7eb !important;
+  border-radius: 20px !important;
+}
+
+
+
+.css-6hp17o-MuiList-root-MuiMenu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  outline: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 15px;
+  align-items: flex-start;
+}
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+  padding: 5px !important;
+}
+
+.MuiPaper-elevation1 {
+  padding: 10px;
+}
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected {
+  width: 100% !important;
+}
+
+.dfgkjsdkofgj {
+  color: #67ebff
+}
+
+
+
+
+
+.button-27 {
+  appearance: none;
+  background-color: white;
+  border: 2px solid #008060;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 20%;
+  will-change: transform;
+}
+
+.button-27:disabled {
+  pointer-events: none;
+}
+
+.button-27:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-27:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.button-28 {
+  appearance: none;
+  background-color: #008060;
+  border: 2px solid white;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 30%;
+  will-change: transform;
+}
+
+.button-28:disabled {
+  pointer-events: none;
+}
+
+.button-28:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-28:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.MuiBottomNavigationAction-root {
+  max-width: 130px !important;
+  padding: 0px 0px !important;
+}

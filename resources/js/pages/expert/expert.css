@@ -1,0 +1,55 @@
+:root {
+  --primary-color: black;
+  --bg-color: #dfe6e9;
+  --text-color: white;
+}
+
+
+
+.containerDiv {
+  background: white;
+  cursor: pointer;
+  border-radius: 15px;
+  position: relative;
+  padding: 25px 30px;
+  color: var(--primary-color);
+}
+
+.containerDiv::after {
+  content: '';
+  background: #09d19f;
+  border-radius: 15px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  clip-path: circle(10% at 0% 0%);
+  transition: all .3s ease-in;
+}
+
+.contentDiv {
+  position: relative;
+  z-index: 1;
+  transition: all .3s ease-in;
+}
+
+.containerDiv:hover::after {
+  clip-path: circle(100%);
+}
+
+.containerDiv:hover .contentDiv {
+  color: var(--text-color);
+}
+
+.swiper-wrapper {
+  padding: 25px !important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+
+  opacity: 1;
+
+}
