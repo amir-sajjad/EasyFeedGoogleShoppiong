@@ -19,8 +19,6 @@ RUN apt-get update && apt-get install -y \
         curl \
         wget \
         redis-tools
-
-
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 RUN docker-php-ext-install gd pdo pdo_mysql gmp zip mbstring fileinfo mysqli
@@ -40,13 +38,20 @@ RUN export NVM_DIR="$HOME/.nvm" && \
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && \
     nvm install 18.15.0 && \
     nvm use 18.15.0
-RUN apt install supervisor -y
-RUN service supervisor start
 # Set the working directory to /var/www/html
 WORKDIR /var/www/html
 COPY . /var/www/html
+RUN composer install
+RUN php artisan migrate
+RUN php artisan db:seed
+# Install and setup supervisor
+RUN apt install supervisor -y
+RUN service supervisor start
+COPY laravel-worker.conf /etc/supervisor/conf.d/laravel-worker.conf
+COPY supervisor.sh /etc/supervisor/conf.d/supervisor.sh
+RUN chmod +x /etc/supervisor/conf.d/supervisor.sh
 # Expose port 80 to the host machine
 EXPOSE 80
-
-# Start Apache server when the container runs
-CMD ["apache2-foreground"]
+# Start Apache and run supervisor script server when the container runs
+#CMD ["apache2-foreground"]
+CMD ["/etc/supervisor/conf.d/supervisor.sh", "apache2-foreground"]
