@@ -42,16 +42,19 @@ RUN export NVM_DIR="$HOME/.nvm" && \
 WORKDIR /var/www/html
 COPY . /var/www/html
 RUN composer install
-RUN php artisan migrate
-RUN php artisan db:seed
+#RUN php artisan migrate --force
+#RUN php artisan db:seed
 # Install and setup supervisor
+RUN mkdir -p /var/www/private
 RUN apt install supervisor -y
-RUN service supervisor start
+#RUN service supervisor start
 COPY laravel-worker.conf /etc/supervisor/conf.d/laravel-worker.conf
 COPY supervisor.sh /etc/supervisor/conf.d/supervisor.sh
 RUN chmod +x /etc/supervisor/conf.d/supervisor.sh
 # Expose port 80 to the host machine
 EXPOSE 80
 # Start Apache and run supervisor script server when the container runs
+#CMD ["/etc/supervisor/conf.d/supervisor.sh" , "apache2-foreground"]
 #CMD ["apache2-foreground"]
-CMD ["/etc/supervisor/conf.d/supervisor.sh", "apache2-foreground"]
+#CMD ["/etc/supervisor/conf.d/supervisor.sh"]
+ENTRYPOINT ["/etc/supervisor/conf.d/supervisor.sh"]
