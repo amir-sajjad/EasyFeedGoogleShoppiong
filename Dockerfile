@@ -39,6 +39,7 @@ RUN export NVM_DIR="$HOME/.nvm" && \
     nvm install 18.15.0 && \
     nvm use 18.15.0
 # Set the working directory to /var/www/html
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 WORKDIR /var/www/html
 COPY . /var/www/html
 RUN composer install
