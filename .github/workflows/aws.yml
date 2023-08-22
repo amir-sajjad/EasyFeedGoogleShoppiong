@@ -24,77 +24,64 @@
 #    See the documentation for each action used below for the recommended IAM policies for this IAM user,
 #    and best practices on handling the access key credentials.
 
-name: Deploy to Amazon ECS
+name: Build, tag, and deploy image to Amazon ECS
 
 on:
   push:
-    branches: [ "main" ]
-
-env:
-  AWS_REGION:   us-east-1
-  ECR_REPOSITORY: demo-ecr
-  ECS_SERVICE: Demoservice
-  ECS_CLUSTER: Democluster
-  ECS_TASK_DEFINITION: .github/workflows/task-definition.json
-  CONTAINER_NAME: demo-container
-
-permissions:
-  contents: read
+    branches:
+      - main
 
 jobs:
-  deploy:
-    name: Deploy
+  build_and_deploy:
     runs-on: ubuntu-latest
-    environment: production
+
+    env:
+      ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      ECR_REPOSITORY: demo-ecr
+      CONTAINER_NAME: demo-container
+      TASK_DEFINITION_FILE: .github/workflows/task-definition.json
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID- }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
 
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Get existing image ID
-      id: get-image-id
-      run: |
-        IMAGE_ID=$(aws ecr list-images --repository-name $ECR_REPOSITORY --filter tagStatus=ANY --query 'imageIds[?imageTag==`latest`].[imageDigest]' --output text)
-        echo "image_id=$IMAGE_ID" >> $GITHUB_ENV
+      - name: Build and push image
+        id: build-image
+        run: |
+          IMAGE_TAG=${{ github.sha }}
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_ENV
 
-    - name: Delete previous image
-      if: env.image_id != ''
-      run: |
-        aws ecr batch-delete-image --repository-name $ECR_REPOSITORY --image-ids imageDigest=$image_id
+      - name: Read ECS task definition file
+        id: read-task-definition
+        run: |
+          echo "::set-output name=content::$(cat $TASK_DEFINITION_FILE)"
+        shell: bash
 
-    - name: Build, tag, and push new image to Amazon ECR
-      id: build-image
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: "latest"
-      run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_ENV
+      - name: Update ECS task definition image
+        id: update-task-definition
+        run: |
+          NEW_IMAGE=${{ steps.build-image.outputs.image }}
+          echo "${{ steps.read-task-definition.outputs.content }}" | jq --arg newImage "$NEW_IMAGE" '.containerDefinitions[0].image = $newImage' > updated-definition.json
+          echo "::set-output name=updated_definition::$(cat updated-definition.json)"
+        shell: bash
 
-    - name: Fill in the new image ID in the Amazon ECS task definition
-      id: task-def
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: ${{ env.ECS_TASK_DEFINITION }}
-        container-name: ${{ env.CONTAINER_NAME }}
-        image: ${{ steps.build-image.outputs.image }}
-
-    - name: Deploy Amazon ECS task definition
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-      with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: ${{ env.ECS_SERVICE }}
-        cluster: ${{ env.ECS_CLUSTER }}
-        wait-for-service-stability: true
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.update-task-definition.outputs.updated_definition }}
+          service: demoservice
+          cluster: democluster
+          wait-for-service-stability: true
