@@ -32,7 +32,7 @@
             }
         }
     ],
-    "family": "demo-TaskDefi",
+    "family": "demotaskdefi",
     "taskRoleArn": "arn:aws:iam::368797244276:role/ecsTaskExecutionRole",
     "executionRoleArn": "arn:aws:iam::368797244276:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
