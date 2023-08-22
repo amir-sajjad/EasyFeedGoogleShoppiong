@@ -31,14 +31,12 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_REGION:   us-east-1                 # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: demo-ecr           # set this to your Amazon ECR repository name
-  ECS_SERVICE: Demoservice                # set this to your Amazon ECS service name
-  ECS_CLUSTER: Democluster                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: .github/workflows/task-definition.json # set this to the path to your Amazon ECS task definition
-                                               # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: demo-container           # set this to the name of the container in the
-                                               # containerDefinitions section of your task definition
+  AWS_REGION:   us-east-1
+  ECR_REPOSITORY: demo-ecr
+  ECS_SERVICE: Demoservice
+  ECS_CLUSTER: Democluster
+  ECS_TASK_DEFINITION: .github/workflows/task-definition.json
+  CONTAINER_NAME: demo-container
 
 permissions:
   contents: read
@@ -64,18 +62,26 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
+    - name: Get existing image digest
+      id: get-image-digest
+      run: |
+        IMAGE_DIGEST=$(aws ecr batch-get-image --repository-name $ECR_REPOSITORY --image-ids imageTag=latest --query 'images[].imageDigest' --output text)
+        echo "image_digest=$IMAGE_DIGEST" >> $GITHUB_ENV
+
+    - name: Delete previous image
+      if: env.image_digest != 'None'
+      run: |
+        aws ecr batch-delete-image --repository-name $ECR_REPOSITORY --image-ids imageDigest=$image_digest
+
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         IMAGE_TAG: "latest"
       run: |
-        # Build a docker container and
-        # push it to ECR so that it can
-        # be deployed to ECS.
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_ENV
 
     - name: Fill in the new image ID in the Amazon ECS task definition
       id: task-def
