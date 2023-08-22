@@ -2,7 +2,7 @@
     "taskDefinitionArn": "arn:aws:ecs:us-east-1:368797244276:task-definition/demo-TaskDefi:1",
     "containerDefinitions": [
         {
-            "name": "Demo-container",
+            "name": "demo-container",
             "image": "368797244276.dkr.ecr.us-east-1.amazonaws.com/demo-ecr:latest",
             "cpu": 0,
             "portMappings": [
@@ -24,7 +24,7 @@
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/demo-TaskDefi",
+                    "awslogs-group": "/ecs/demoTask",
                     "awslogs-region": "us-east-1",
                     "awslogs-stream-prefix": "ecs"
                 },
