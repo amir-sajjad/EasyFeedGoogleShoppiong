@@ -57,14 +57,14 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Build and push image
+            - name: Build and push image
         id: build-image
         run: |
           IMAGE_TAG=${{ env.GITHUB_SHA }}
           docker build -t $ECR_REPOSITORY:$IMAGE_TAG .
-          docker tag $ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          docker push ${{ env.ECR_REGISTRY }}/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "image=${{ env.ECR_REGISTRY }}/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_ENV
+          docker tag $ECR_REPOSITORY:$IMAGE_TAG ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}  # Modify this line
+          docker push ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}
+          echo "image=${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}" >> $GITHUB_ENV
 
       - name: Read ECS task definition file
         id: read-task-definition
