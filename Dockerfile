@@ -43,8 +43,8 @@ COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 WORKDIR /var/www/html
 COPY . /var/www/html
 RUN composer install
-RUN php artisan migrate --force
-RUN php artisan db:seed
+#RUN php artisan migrate --force
+#RUN php artisan db:seed
 # Install and setup supervisor
 RUN mkdir -p /var/www/private
 RUN apt install supervisor -y
