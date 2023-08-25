@@ -39,6 +39,7 @@ RUN export NVM_DIR="$HOME/.nvm" && \
 # Install supervisor
 #RUN apt install supervisor -y
 #RUN service supervisor start
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
 # Set the working directory to /var/www/html
 WORKDIR /var/www/html
 COPY . /var/www/html
